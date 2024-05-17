@@ -1,5 +1,50 @@
 package com.jamallo.config;
 
+import java.util.Date;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.security.core.Authentication;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+
+public class JwtProvider {
+
+    private static final String SECRET_KEY = "your-secret-key-your-secret-key-your-secret-key"; // Usa una clave secreta adecuada
+    private static SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+
+    public String generateToken(Authentication auth) {
+        String jwt = Jwts.builder()
+                .setIssuer("Codewithjamallo")
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                .claim("email", auth.getName())
+                .signWith(key)
+                .compact();
+        return jwt;
+    }
+
+    public String getEmailFromJwtToken(String jwt) {
+        // Elimina el prefijo "Bearer " si está presente
+        if (jwt.startsWith("Bearer ")) {
+            jwt = jwt.substring(7);
+        }
+
+        Claims claims = Jwts.parser()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(jwt)
+                .getBody();
+
+        return String.valueOf(claims.get("email"));
+    }
+}
+
+
+/**package com.jamallo.config;
+
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
@@ -61,7 +106,7 @@ public class JwtProvider {
         return String.valueOf(claims.get("email"));
     }
 }
-
+*/
 /** package com.jamallo.config;
 
 import java.util.Date;

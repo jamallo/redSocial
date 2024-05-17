@@ -43,5 +43,8 @@ public class Post {
 	
 	private LocalDateTime createdAt;
 	
+	@OneToMany
+	private List<Comment> comments = new ArrayList<>();
+	
 	//book
-}
+};
