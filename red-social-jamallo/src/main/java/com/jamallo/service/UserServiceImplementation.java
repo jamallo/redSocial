@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jamallo.config.JwtProvider;
+import com.jamallo.exceptions.ExcepcionesUsuario;
 import com.jamallo.models.User;
 import com.jamallo.repository.UserRepository;
 
@@ -32,7 +33,7 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public User findUserById(Integer userId) throws Exception {
+	public User findUserById(Integer userId) throws ExcepcionesUsuario {
 		
 		Optional<User> user=userRepository.findById(userId);
 		
@@ -41,7 +42,7 @@ public class UserServiceImplementation implements UserService {
 			return user.get();
 		}
 		
-		throw new Exception("el usuario no existe con ese id " + userId);
+		throw new ExcepcionesUsuario("el usuario no existe con ese id " + userId);
 	}
 
 	@Override
@@ -53,7 +54,7 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public User followUser(Integer reqUserId, Integer userId2) throws Exception {
+	public User followUser(Integer reqUserId, Integer userId2) throws ExcepcionesUsuario {
 		
 		User reqUser = findUserById(reqUserId);
 		
@@ -69,12 +70,12 @@ public class UserServiceImplementation implements UserService {
 	}
 
 	@Override
-	public User updateUser(User user, Integer userId) throws Exception {
+	public User updateUser(User user, Integer userId) throws ExcepcionesUsuario {
 		
 		Optional<User> user1 = userRepository.findById(userId);
 		
 		if (user1.isEmpty()) {
-			throw new Exception("usuario no existe con ese id " + userId);
+			throw new ExcepcionesUsuario("usuario no existe con ese id " + userId);
 		}
 		
 		User oldUser= user1.get();
