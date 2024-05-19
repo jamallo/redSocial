@@ -18,6 +18,12 @@ public class UserServiceImplementation implements UserService {
 	UserRepository userRepository;
 	
 
+	 /**
+     * Registra un nuevo usuario en la base de datos.
+     *
+     * @param user -> Recibe el usuario a registrar.
+     * @return El usuario registrado y guardado.
+     */
 	@Override
 	public User registerUser(User user) {
 		User newUser = new User();
@@ -32,6 +38,13 @@ public class UserServiceImplementation implements UserService {
 		return savedUser;
 	}
 
+	/**
+     * Encuentra un usuario por su ID.
+     *
+     * @param userId -> Recibe el ID del usuario a buscar.
+     * @return El usuario encontrado.
+     * @throws ExcepcionesUsuario Si el usuario no se encuentra.
+     */
 	@Override
 	public User findUserById(Integer userId) throws ExcepcionesUsuario {
 		
@@ -45,6 +58,12 @@ public class UserServiceImplementation implements UserService {
 		throw new ExcepcionesUsuario("el usuario no existe con ese id " + userId);
 	}
 
+	/**
+     * Encuentra un usuario por su email.
+     *
+     * @param email -> Recibe el email del usuario a buscar.
+     * @return El usuario encontrado.
+     */
 	@Override
 	public User findUserByEmail(String email) {
 		
@@ -53,6 +72,14 @@ public class UserServiceImplementation implements UserService {
 		return user;
 	}
 
+	/**
+     * Permite a un usuario seguir a otro usuario.
+     *
+     * @param reqUserId -> Recibe el ID del usuario que quiere seguir.
+     * @param userId2 -> Recibe el ID del usuario a ser seguido.
+     * @return El usuario que hizo la solicitud de seguir.
+     * @throws ExcepcionesUsuario -> Si alguno de los usuarios no se encuentra.
+     */
 	@Override
 	public User followUser(Integer reqUserId, Integer userId2) throws ExcepcionesUsuario {
 		
@@ -69,6 +96,14 @@ public class UserServiceImplementation implements UserService {
 		return reqUser;
 	}
 
+	/**
+     * Actualiza la información de un usuario existente.
+     *
+     * @param user -> Recibe los nuevos datos del usuario.
+     * @param userId -> Recibe el ID del usuario a actualizar.
+     * @return El usuario actualizado.
+     * @throws ExcepcionesUsuario -> Si el usuario no se encuentra.
+     */
 	@Override
 	public User updateUser(User user, Integer userId) throws ExcepcionesUsuario {
 		
@@ -101,14 +136,26 @@ public class UserServiceImplementation implements UserService {
 		return updateUser;
 	}
 
+	/**
+     * Busca usuarios basándose en una consulta.
+     *
+     * @param query -> Recibe la consulta de búsqueda.
+     * @return La lista de usuarios que coinciden con la consulta.
+     */
 	@Override
 	public List<User> searchUser(String query) {
 		return userRepository.searchUser(query);
 	}
 	
-    // Instancia de JwtProvider
+	// Instancia de JwtProvider para gestionar JWT.
     private JwtProvider jwtProvider = new JwtProvider();
 
+    /**
+     * Encuentra un usuario a partir de un token JWT.
+     *
+     * @param jwt -> Recibe el token JWT.
+     * @return El usuario encontrado.
+     */
 	@Override
 	public User findUserByJwt(String jwt) {
 		

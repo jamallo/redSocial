@@ -15,6 +15,8 @@ import com.jamallo.models.User;
 import com.jamallo.service.ReelsService;
 import com.jamallo.service.UserService;
 
+
+// Controlador REST para manejar las solicitudes relacionadas con los reels.
 @RestController
 public class ReelsController {
 
@@ -24,6 +26,13 @@ public class ReelsController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+     * Endpoint para crear un nuevo reel.
+     *
+     * @param reel -> Recibe el objeto Reels que se va a crear.
+     * @param jwt -> Recibe el token JWT del usuario.
+     * @return El reel creado.
+     */
 	@PostMapping("/api/reels")
 	public Reels createReels(
 			@RequestBody Reels reel, 
@@ -37,6 +46,11 @@ public class ReelsController {
 		return createdReels;
 	}
 	
+	/**
+     * Endpoint para obtener todos los reels.
+     *
+     * @return La lista de todos los reels.
+     */
 	@GetMapping("/api/reels")
 	public List<Reels> findAllReels() {
 				
@@ -45,6 +59,13 @@ public class ReelsController {
 		return reels;
 	}
 	
+	/**
+     * Endpoint para obtener todos los reels de un usuario por su ID.
+     *
+     * @param userId-> Recibe el ID del usuario.
+     * @return La lista de reels del usuario.
+     * @throws Exception -> Si ocurre un error durante la búsqueda de los reels.
+     */
 	@GetMapping("/api/reels/user/{userId}")
 	public List<Reels> findUserReels(
 			@PathVariable Integer userId

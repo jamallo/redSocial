@@ -19,23 +19,34 @@ import org.springframework.web.cors.CorsConfigurationSource;
 
 import jakarta.servlet.http.HttpServletRequest;
 
-@Configuration
-@EnableWebSecurity
+// Esta clase es una configuración de seguridad para la aplicación Spring.
+
+@Configuration // indica que es una clase de configuración
+@EnableWebSecurity //habilita la seguridad web en la aplicación
 public class AppConfig {
+	
+	// Configuración de la cadena de filtros de seguridad para HTTP.
 
 	@Bean
 	SecurityFilterChain securityFilterChain (HttpSecurity http) throws Exception {
+		/* -> Configuración de la política de creación de sesiones como "stateless" (sin estado), 
+		 * lo cual es común en aplicaciones que usan JWT para manejar la autenticación.
+		 * -> Definición de las reglas de autorización. 
+		 */
 		http.sessionManagement(management -> management.sessionCreationPolicy(
 				SessionCreationPolicy.STATELESS))
 		.authorizeHttpRequests(Authorize -> Authorize
-				.requestMatchers("/api/**").authenticated()
-				.anyRequest().permitAll())
-		.addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
-		.csrf(csrf -> csrf.disable())
-		.cors(cors -> cors.configurationSource(corsConfigurationSource()));
+				.requestMatchers("/api/**").authenticated() // Requiere autenticación para rutas que empiecen con "/api/"
+				.anyRequest().permitAll()) // Permite todas las demás rutas sin autenticación
+		.addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class) // Añade el filtro JWT antes del filtro de autenticación básica
+		.csrf(csrf -> csrf.disable()) // Deshabilita la protección token CSRF (Cross Site Request Forgery)
+		.cors(cors -> cors.configurationSource(corsConfigurationSource())); // Habilita la configuración CORS (Cross Origin Resource Sharing)
+		// permite interacciones entre recursos de diferentes orígenes, algo que normalmente está prohibido para prevenir comportamientos maliciosos
 		
 		return http.build();
 	}
+	
+	// Configuración de las políticas de CORS (Cross-Origin Resource Sharing) para la aplicación.
 	
 private CorsConfigurationSource corsConfigurationSource() {
 
@@ -46,21 +57,22 @@ private CorsConfigurationSource corsConfigurationSource() {
 
 				CorsConfiguration cfg = new CorsConfiguration();
 				cfg.setAllowedOrigins(Arrays.asList(
-						"http://localhost:3000/"));
-				
-				cfg.setAllowedMethods(Collections.singletonList("*"));
-				cfg.setAllowCredentials(true);
-				cfg.setAllowedHeaders(Collections.singletonList("*"));
-				cfg.setExposedHeaders(Arrays.asList("Authorization"));
-				cfg.setMaxAge(3600L);
+						"http://localhost:3000/")); // Permite solicitudes desde esta URL de origen
+				cfg.setAllowedMethods(Collections.singletonList("*")); // Permite todos los métodos HTTP
+				cfg.setAllowCredentials(true); // Permite el uso de credenciales
+				cfg.setAllowedHeaders(Collections.singletonList("*")); // Permite todos los encabezados
+				cfg.setExposedHeaders(Arrays.asList("Authorization")); // Expone el encabezado de autorización
+				cfg.setMaxAge(3600L); // Cachea la configuración por 3600 segundos (1 hora)
 				
 				return cfg;
 			}
 		};
 	}
 
+// Definición del bean PasswordEncoder que usará BCrypt para codificar contraseñas.
+
 @Bean	
 PasswordEncoder passwordEncoder() {
-	return new BCryptPasswordEncoder();
+	return new BCryptPasswordEncoder(); // Define BCrypt como el codificador de contraseñas
 }
 }

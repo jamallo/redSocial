@@ -4,7 +4,6 @@ public class ExcepcionesUsuario extends Exception{
 
 	public ExcepcionesUsuario(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 	
