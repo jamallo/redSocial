@@ -3,8 +3,15 @@
 	<item key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel" value="0"/>
 	<item key="GitSelectRepositoryPage.lastRepository" value="D:\GIT\redsocial\.git"/>
 	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/jamallo/redSocial"/>
+		<item value="https://github.com/jamallo"/>
 		<item value="file://D:\GIT"/>
 		<item value="file://D:\GIT\redsocial\red-social-jamallo"/>
+	</list>
+	<list key="EGit.KnownHosts">
+		<item value="bitbucket.org"/>
+		<item value="git.eclipse.org"/>
+		<item value="github.com"/>
 	</list>
 	<section name="GitImportWizard">
 		<item key="GitProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>

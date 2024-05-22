@@ -1,0 +1,47 @@
+$fuente: "Russo One", sans-serif;
+$color-principal: #3B82F6;
+$color-oscuro: #053075;
+$color-claro: #B1CEFB;
+$blanco: #ffffff;
+$sombra-cajas: -3px 5px 3px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+@mixin cajasFormularios {
+    margin: 20px auto;
+    width: 80%;
+    background-color: $color-oscuro;
+    border-radius: 20px;
+    border-style: double;
+    color: $blanco;
+    box-shadow: $sombra-cajas;
+}
+
+@mixin boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    outline: 0;
+    border: 0;
+    margin: 0 auto;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    text-decoration: none;
+    font-family: $fuente;
+    width: 80%;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    min-width: 64px;
+    border-radius: 20px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: $blanco;
+    box-shadow: $sombra-cajas;
+    padding: .8rem .0rem;
+    background-color: $color-oscuro;
+    text-align: center;
+    padding-inline: 20px;
+}

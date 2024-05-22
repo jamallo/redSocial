@@ -1,16 +1,59 @@
+@use 'base';
+
 .Formulario {
     display: flex;
-    background-color: #3B82F6;
+    background-color: base.$color-principal;
     margin: 20px auto;
     border-radius: 20px;
     justify-items: center;
     width: 80%;
+    box-shadow: base.$sombra-cajas;
 }
 
 .Formulario__contenedor {
-    display: flex;
     margin: 20px auto;
     width: 100%;
-    right: 0px;
-    justify-content: center;
+
+    
+    
 }
+
+.Formulario__contenedor__email, 
+.Formulario__contenedor__password,
+.Formulario__contenedor__nombre,
+.Formulario__contenedor__apellidos,
+.Formulario__contenedor__genero {
+    @include base.cajasFormularios
+    
+    
+}
+
+.MuiFormGroup-root {
+    margin: 20px;
+}
+
+.MuiTypography-root{
+    font-family: base.$fuente;
+}
+
+.MensajeError {
+    background-color: red;
+}
+
+
+
+.MuiInputBase-input.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input {
+    color: base.$blanco;
+    font-family: base.$fuente;
+    border-color: transparent;
+    
+}
+
+
+
+button {
+    @include base.boton
+}
+
+
+
