@@ -1,0 +1,30 @@
+.Formulario__autentificacion {
+    width: 40%;
+    margin: 20px;
+    border-style: double;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    height: 100%;
+    background-image: linear-gradient(white, #B1CEFB);   
+    border-color: #3B82F6;
+    float: inline-end;
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.296);
+
+}
+
+.TituloRed {
+    padding: 20px 20px 0px 20px;
+    text-align: center;
+    color: #3B82F6;
+    font-family: "Russo One", sans-serif;
+}
+
+.DescripcionRed {
+    padding: 0px 20px 20px 20px;
+    text-align: center;
+    color: #3B82F6;
+    font-family: "Russo One", sans-serif;
+}
+

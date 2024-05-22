@@ -1,0 +1,16 @@
+.Formulario {
+    display: flex;
+    background-color: #3B82F6;
+    margin: 20px auto;
+    border-radius: 20px;
+    justify-items: center;
+    width: 80%;
+}
+
+.Formulario__contenedor {
+    display: flex;
+    margin: 20px auto;
+    width: 100%;
+    right: 0px;
+    justify-content: center;
+}
