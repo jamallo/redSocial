@@ -3,6 +3,7 @@ import React from "react";
 import "../../styles/Autenticacion.scss"
 import Login from "./Login";
 import Registro from "./Registro";
+import { Route, Routes } from "react-router-dom";
 
 const Autentificacion = () => {
   return (
@@ -16,8 +17,12 @@ const Autentificacion = () => {
                   Conecta y comparte: di lo que piensas
                 </p>
               </div>
-              <Login/>
-              {/*<Registro/>*/}
+              <Routes>
+                <Route path='/' element={<Login/>}/>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/registro' element={<Registro/>}/>
+              </Routes>
+
             </div>
           </div>
 

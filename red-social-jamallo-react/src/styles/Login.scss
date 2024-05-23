@@ -55,5 +55,10 @@ button {
     @include base.boton
 }
 
+button:hover, button:focus {
+    box-shadow: 0 0 0 3em rgba(255, 255, 255, 0);
+
+}
+
 
 

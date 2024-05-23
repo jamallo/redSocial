@@ -5,6 +5,7 @@ import "../../styles/Login.scss"
 import * as Yup from "yup";
 import { useDispatch } from 'react-redux';
 import { loginUserAction } from '../../Redux/Auth/auth.action';
+import { useNavigate } from 'react-router-dom';
 
 
 const initialValues={email:"", password:""}
@@ -15,6 +16,7 @@ password: Yup.string()
 const Login = () => {
     const [formValue, setFormValue] = useState();
     const dispath = useDispatch();
+    const navegacion = useNavigate();
 
     const handleSubmit=(values) => {
       console.log("Envío", values);
@@ -65,6 +67,16 @@ const Login = () => {
             </div>
        </Form>
       </Formik>
+      <div className='DescripcionRed'>
+        <p>
+          ¿No tienes una cuenta?
+          <button  
+            type="submit"
+            onClick={()=>navegacion("/registro")}>
+            Regístrate
+          </button>
+        </p>
+      </div>
     </>
   )
 }

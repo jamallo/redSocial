@@ -11,6 +11,7 @@ import "../../styles/Login.scss";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { registerUserAction } from "../../Redux/Auth/auth.action";
+import { useNavigate } from "react-router-dom";
 
 
 const initialValues = { nombre:"", apellidos:"", email: "", password: "", genero:"" };
@@ -34,6 +35,7 @@ const Registro = () => {
   };
 
   const [value, setValue] = React.useState('female');
+  const navegacion = useNavigate();
 
   const handleChange = (event) => {
     setGenero(event.target.value);
@@ -143,6 +145,16 @@ const Registro = () => {
           </div>
         </Form>
       </Formik>
+      <div className='DescripcionRed'>
+        <p>
+          ¿Ya tienes una cuenta?
+          <button  
+            type="submit"
+            onClick={()=>navegacion("/")}>
+            iniciar sesión
+          </button>
+        </p>
+      </div>
     </>
   );
 };

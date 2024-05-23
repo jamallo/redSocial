@@ -1,6 +1,5 @@
 import axios from "axios";
 import { API_BASE_URL } from "../../config/api";
-import { type } from "@testing-library/user-event/dist/type";
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from "./auth.actionType";
 
 export const loginUserAction = (loginData) => async(dispatch) => {
