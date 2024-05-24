@@ -60,6 +60,7 @@ const Login = () => {
                         className='MensajeError'/>
                 </div>
                 <button  
+                    className='boton'
                     type="submit">
                     Acceder
                 </button>
@@ -71,6 +72,7 @@ const Login = () => {
         <p>
           ¿No tienes una cuenta?
           <button  
+            className='boton'
             type="submit"
             onClick={()=>navegacion("/registro")}>
             Regístrate

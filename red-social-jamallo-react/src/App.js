@@ -11,7 +11,7 @@ function App() {
     <div className="">
       <Fondo/>
       <Routes>
-        <Route path='/paginainicio' element={<PaginaPrincipal/>}/>
+        <Route path='/*' element={<PaginaPrincipal/>}/>
         <Route path='/mensajes' element={<Mensajes/>}/>
         <Route path='/*' element={<Autentificacion/>}/>
 

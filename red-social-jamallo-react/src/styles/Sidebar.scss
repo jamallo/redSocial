@@ -1,0 +1,90 @@
+@use 'base';
+
+.pantalla {
+
+    display: flex;
+    flex-direction: column; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    background-color: base.$color-claro-semitransparente;
+    border-radius: 20px;
+    height: 90vh;
+}
+
+.pantalla__contenedor {
+    padding-left: 10px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.pantalla_contenedor_text {
+    display: flex;
+    margin: 0 auto;
+}
+
+.pantalla__contenedor__logo {
+    width: 100%;
+    font-weight: bold;
+    font-size: 40px;
+    color: base.$color-oscuro;
+    text-align: center;
+
+}
+
+.pantalla__contenedor__menu {
+    margin-top: 20px;
+}
+
+.pantalla_contenedor__menu__iconos {
+    cursor: pointer; 
+    display: flex;
+    margin-left: 12px;
+    color: base.$color-oscuro;
+    margin-top: 20px;
+    transition: 1s;
+
+}
+
+.pantalla__contenedor__menu__textoIconos {
+    font-size: 20px;
+    margin-left: 12px;
+    margin-top: -5px;
+    font-weight: bold;
+}
+
+.pantalla_contenedor__menu__iconos:hover {
+    background-color: base.$color-oscuro;
+    color: base.$color-claro;
+    border-radius: 20px;
+}
+
+.pantalla__perfil {
+    padding-left: 20px; 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.pantalla__perfil__avatar {
+    display: flex;
+    align-items: center;
+    margin-left: 12px;
+    justify-items: end;
+    color: base.$color-oscuro;
+}
+
+.titulo__perfil{
+    font-weight: bold;
+    margin-left: 5px;
+
+}
+
+#basic-button {
+    color: base.$color-oscuro;
+    display: flex;
+    justify-content: right;
+}

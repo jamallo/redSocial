@@ -1,0 +1,31 @@
+.contenedor {
+    padding-left: 5rem;
+    padding-right: 5rem;
+}
+
+.contenedor__sidebar {
+    position: sticky;
+    top: 0;
+}
+
+.contenedor__routes {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor__grid__inicioDerecha {
+    position: -webkit-sticky; /* Para compatibilidad con navegadores Webkit (Safari) */
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.contenedor__grid {
+    position: relative;
+    position: -webkit-sticky; /* Para compatibilidad con navegadores Webkit (Safari) */
+    position: sticky;
+    top: 0;
+    width: 100%; 
+}

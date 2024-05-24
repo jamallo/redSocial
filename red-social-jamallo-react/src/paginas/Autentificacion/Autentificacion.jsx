@@ -11,7 +11,7 @@ const Autentificacion = () => {
 
           <div className="Formulario__autentificacion">
             <div>
-              <div className="flex flex-col items-center mb-5 space-y-1">
+              <div className="">
                 <h1 className="TituloRed">Jamallo</h1>
                 <p className="DescripcionRed">
                   Conecta y comparte: di lo que piensas
