@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../../componentes/Sidebar/Sidebar";
 import { useLocation, Routes, Route } from "react-router-dom";
 import MiddlePart from "../../componentes/MiddlePart/MiddlePart";
@@ -8,9 +8,19 @@ import CreateReelsFrom from "../../componentes/CreateReelsFrom/CreateReelsFrom";
 import Profile from "../../componentes/Profile/Profile";
 import InicioDerecha from "../../componentes/InicioDerecha/InicioDerecha";
 import "../../styles/PaginaPrincipal.scss"
+import { useDispatch, useSelector } from "react-redux";
+import { getProfileAction } from "../../Redux/Auth/auth.action";
 
 const PaginaPrincipal = () => {
+  const dispatch=useDispatch();
   const location = useLocation();
+  const jwt = localStorage.getItem("jwt");
+  const {auth} = useSelector(store=>store);
+
+  console.log("auth", auth)
+
+  
+
   return (
     <div className="contenedor">
       <Grid container spacing={0}>
@@ -32,11 +42,11 @@ const PaginaPrincipal = () => {
             <Route path="/profile/:id" element={<Profile />} />
           </Routes>
         </Grid>
-        <Grid item md={3} className="contenedor__grid">
+        {location.pathname === "/" && <Grid item md={3} className="contenedor__grid">
           <div className="contenedor__grid__inicioDerecha">
             <InicioDerecha />
           </div>
-        </Grid>
+        </Grid>}
       </Grid>
     </div>
   );

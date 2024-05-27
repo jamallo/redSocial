@@ -1,0 +1,51 @@
+@use "base";
+
+.MiddlePart {
+    padding-top: 20px;
+}
+
+.MiddlePart__perfiles {
+    display: flex;
+    margin: 4px;
+    padding: 6px;
+    justify-items: space-between;
+
+
+}
+
+.contenido {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.MiddlePart__contenido {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+}
+
+#contenido__BotonPerfil {
+    height: 10px;
+}
+
+.Buscador {
+    outline: none;
+    width: 90%;
+    height: 50px;
+    border-radius: 9px;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background-color: transparent;
+    border: 2px solid;
+    border-color: base.$color-oscuro;
+}
+
+.contenido__contenido {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.25rem;
+    margin-left: 36px;
+    
+
+}

@@ -16,12 +16,12 @@ export const menuNavegacion = [
     {
         titulo: "Reels",
         icono: <SearchIcon/>,
-        path:"/"
+        path:"/reels"
     },
     {
         titulo: "Crear Reels",
         icono: <ControlPointDuplicateIcon/>,
-        path:"/"
+        path:"/crear-reels"
     },
     {
         titulo: "Notificaciones",
@@ -31,7 +31,7 @@ export const menuNavegacion = [
     {
         titulo: "Mensajes",
         icono: <SpeakerNotesIcon/>,
-        path:"/"
+        path:"/mensajes"
     },
     {
         titulo: "Listas",
@@ -46,7 +46,7 @@ export const menuNavegacion = [
     {
         titulo: "Perfil",
         icono: <AccountCircleIcon/>,
-        path:"/"
+        path:"/profile"
     },
 
 

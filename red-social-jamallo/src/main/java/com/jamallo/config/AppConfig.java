@@ -57,7 +57,10 @@ private CorsConfigurationSource corsConfigurationSource() {
 
 				CorsConfiguration cfg = new CorsConfiguration();
 				cfg.setAllowedOrigins(Arrays.asList(
-						"http://localhost:3000/")); // Permite solicitudes desde esta URL de origen
+						"http://localhost:3000",
+						"http://localhost:4000",
+						"http://localhost:4200",
+						"http://jamallo.app")); // Permite solicitudes desde esta URL de origen
 				cfg.setAllowedMethods(Collections.singletonList("*")); // Permite todos los métodos HTTP
 				cfg.setAllowCredentials(true); // Permite el uso de credenciales
 				cfg.setAllowedHeaders(Collections.singletonList("*")); // Permite todos los encabezados

@@ -1,0 +1,19 @@
+.Derecha {
+    padding-right: 5px;
+}
+
+.Derecha__Usuario {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    padding-left: 5px;
+}
+
+.Derecha__Usuario__Sugerencias {
+    font-stretch: semi-expanded;
+    opacity: 70%;
+}
+
+.Derecha__Usuario__Sugerencias__ver {
+    opacity: 95%;
+}

@@ -1,0 +1,18 @@
+@use 'base';
+
+.BotonPerfil {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+
+}
+
+.BotonPerfil__avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin: 4px;
+}

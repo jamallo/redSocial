@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const initialValues={email:"", password:""}
-const validationSchema={emil:Yup.string().email("Email inválido").required("El email es obligatorio"),
+const validationSchema={email:Yup.string().email("Email inválido").required("El email es obligatorio"),
 password: Yup.string()
   .min(6, "La contraseña debe tener 6 carácteres")
   .required("La contraseña es obligatoria")}

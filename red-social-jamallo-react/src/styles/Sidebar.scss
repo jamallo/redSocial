@@ -10,6 +10,7 @@
     background-color: base.$color-claro-semitransparente;
     border-radius: 20px;
     height: 90vh;
+    font-family: base.$fuente;
 }
 
 .pantalla__contenedor {
@@ -63,23 +64,29 @@
     padding-left: 20px; 
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-top: 20px;
+    padding-top: 10px;
     position: absolute;
     bottom: 10px;
+    width: 100%;
+    border-top: 1px ridge #05307560;
+    
+
 }
 
 .pantalla__perfil__avatar {
+    align-items: start;
     display: flex;
-    align-items: center;
     margin-left: 12px;
-    justify-items: end;
     color: base.$color-oscuro;
+    width: 100%;
+    justify-content: space-between;
+    margin-right: 40px;
+    align-items: center;
 }
+
 
 .titulo__perfil{
     font-weight: bold;
-    margin-left: 5px;
 
 }
 
@@ -87,4 +94,10 @@
     color: base.$color-oscuro;
     display: flex;
     justify-content: right;
+}
+
+.boton_puntos {
+    display: flex;
+    justify-items: end;
+    right: 0px;
 }
