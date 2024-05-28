@@ -22,13 +22,13 @@
     padding-right: 5px;
     display: flex;
     justify-content: space-between;
-    justify-items: start;
     margin-top: 5px;
     height: 5rem;
+    
 }
 
 .Perfil__contenido__daatos__avatar {
-    transform: translate(0px, -15px);
+    transform: translate(0px, -50px);
 }
 
 .Perfil__contenido__masDatos {
@@ -39,16 +39,22 @@
 .Perfil__contenido__masDatos__nombre {
     padding-left: 1px;
     font-weight: bold;
-    text-align: right;
+    text-align: left;
     color: #053075;
+    font-size: 28px;
+}
+
+p {
+    font-weight: lighter;
 }
 
 .Perfil__contenido__masDatos__perfil {
     display: flex;
-    gap: 5px;
-    justify-items: center;
+    gap: 15px;
+    justify-items: end;
     padding-left: 3px;
     color: #053075;
+    font-weight: bold;
 }
 
 .Perfil__contenido__masDatos__post {
@@ -68,4 +74,15 @@
     justify-content: center;
     margin-left: 5px;
 }
+
+.boton {
+    display: flex;
+    margin-right: 0px;
+    width: auto;
+    height: 50px; 
+    justify-content: right; 
+    right: 0px;
+
+}
+
 

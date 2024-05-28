@@ -13,11 +13,11 @@ export const loginUserAction = (loginData) => async(dispatch) => {
         }
 
         console.log("inicio de sesión correcto", data)
-        dispatch({type:LOGIN_SUCCESS, payload:data.jwt})
+        dispatch({type:LOGIN_SUCCESS, payload:data.token})
 
     } catch (error) {
         console.log("-------", error)
-        dispatch({type:LOGIN_FAILURE, payload:error})
+        dispatch({type:LOGIN_FAILURE, payload: error.response ? error.response.data : error.message})
     }
 };
 
@@ -32,11 +32,11 @@ export const registerUserAction = (loginData) => async(dispatch) => {
         }
 
         console.log("registro", data)
-        dispatch({type:REGISTER_SUCCESS, payload:data.jwt})
+        dispatch({type:REGISTER_SUCCESS, payload:data.token})
 
     } catch (error) {
         console.log("-------", error)
-        dispatch({type:REGISTER_FAILURE, payload:error})
+        dispatch({type:REGISTER_FAILURE, payload: error.response ? error.response.data : error.message})
     }
 };
 
@@ -57,22 +57,22 @@ export const getProfileAction = (jwt) => async(dispatch) => {
 
     } catch (error) {
         console.log("-------", error)
-        dispatch({type:GET_PROFILE_FAILURE, payload:error})
+        dispatch({type:GET_PROFILE_FAILURE, payload:error.response ? error.response.data : error.message})
     }
 };
 
 export const updateProfileAction = (reqData) => async(dispatch) => {
-    dispatch({type: UPDATE_PROFILE_REQUEST})
+    dispatch({type:UPDATE_PROFILE_REQUEST})
     try {
-        const {data} = await api.post(
+        const {data} = await api.put(
             `${API_BASE_URL}/api/users`, reqData     
         );
 
         console.log("update perfil ------", data)
-        dispatch({type: UPDATE_PROFILE_SUCCESS, payload:data});
+        dispatch({type:UPDATE_PROFILE_SUCCESS, payload:data});
 
     } catch (error) {
         console.log("-------", error)
-        dispatch({type: UPDATE_PROFILE_FAILURE, payload:error});
+        dispatch({type:UPDATE_PROFILE_FAILURE, payload:error.response ? error.response.data : error.message});
     }
 }

@@ -1,0 +1,26 @@
+@use "base";
+
+.ventana {
+    color: base.$color-oscuro;
+    background-color: base.$color-claro;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    outline: "none";
+    overFlow: "scroll";
+    border-radius: 10px;
+    
+}
+
+.ventana__input {
+    background-color: #053075;
+    color: #ffffff;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}

@@ -4,6 +4,10 @@ import "../../styles/Perfil.scss";
 import { Avatar, Box, Button, Card, Tab, Tabs } from "@mui/material";
 import PostCard from "../Post/PostCard";
 import UserReelCard from "../Reels/UserReelCard";
+import { useSelector } from "react-redux";
+import BotonPerfil from "../Botones/BotonPerfil"
+import Boton from "../Botones/Boton";
+import ProfileModel from "./ProfileModel";
 
 const tabs = [
   { value: "post", name: "Post" },
@@ -18,6 +22,7 @@ const savedPost = [1, 1, 1, 1];
 const repost = [1, 1, 1, 1];
 
 const Profile = () => {
+  const{auth} = useSelector(store=>store);
   const { id } = useParams();
 
   const [value, setValue] = React.useState("post");
@@ -25,6 +30,10 @@ const Profile = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpenProfileModal = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className="Perfil">
@@ -54,16 +63,11 @@ const Profile = () => {
               }}
             />
             {true ? (
-              <Button
-                variant="outlined"
-                sx={{
-                  borderRadius: "20px",
-                  color: "#053075",
-                  borderColor: "#053075",
-                }}
-              >
-                Editar Perfil
-              </Button>
+              <Boton
+                text="Editar Perfil"
+                className="Perfil__contenido__daatos__Boton"
+                onClick={handleOpenProfileModal}
+              />
             ) : (
               <Button
                 variant="outlined"
@@ -72,6 +76,7 @@ const Profile = () => {
                   color: "#053075",
                   borderColor: "#053075",
                 }}
+                onClick={handleOpenProfileModal}
               >
                 Seguir
               </Button>
@@ -80,9 +85,9 @@ const Profile = () => {
           <div className="Perfil__contenido__masDatos">
             <div>
               <h1 className="Perfil__contenido__masDatos__nombre">
-                nombre y apellidos
+              {auth.user?.nombre + " " + auth.user?.apellidos}
               </h1>
-              <p>@nombrePersona</p>
+              <p>@{auth.user?.nombre.toLowerCase() + "_" + auth.user?.apellidos.toLowerCase()}</p>
             </div>
             <div className="Perfil__contenido__masDatos__perfil">
               <span>41 post</span>
@@ -144,6 +149,9 @@ const Profile = () => {
             </section>
           </div>
         </div>
+        <section>
+        <ProfileModel open={open} handleClose={handleClose}/>
+        </section>
       </Card>
     </div>
   );

@@ -14,6 +14,12 @@ const Sidebar = () => {
   const handleNavigate=(item)=>{
     if(item.titulo==="Perfil") {
       navigate(`/profile/${auth.user?.id}`)
+    } else if (item.titulo==="Inicio") {
+      navigate(`/`)
+    } else if (item.titulo==="Perfil") {
+      navigate(`/profile/${auth.user?.id}`)
+    } else if (item.titulo==="Reels") {
+      navigate(`/reels`)
     }
   } 
   return (
