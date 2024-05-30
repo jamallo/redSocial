@@ -150,7 +150,7 @@ const Registro = () => {
                 />
               </RadioGroup>
             </div>
-            <button className="boton" type="submit">
+            <button className="boton__login" type="submit">
               Registro
             </button>
           </div>
@@ -160,7 +160,7 @@ const Registro = () => {
         <p>
           ¿Ya tienes una cuenta?
           <button
-            className="boton"
+            className="boton__login"
             type="submit"
             onClick={() => navegacion("/")}
           >

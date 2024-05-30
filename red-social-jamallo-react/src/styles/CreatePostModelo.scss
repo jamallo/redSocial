@@ -1,0 +1,20 @@
+@use "base";
+
+.ventanaArticulo {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+.ventanaArticulo__nombre {
+    font-weight: bold;
+    font-size: large;
+}
+
+.ventanaArticulo__nick {
+    font-size: small;
+}
+
+#image-input, #video-input {
+    display: none;
+}

@@ -59,11 +59,13 @@ const Login = () => {
                         component="div"
                         className='MensajeError'/>
                 </div>
-                <button  
-                    className='boton'
+                <div>
+                  <button  
+                    className='boton__login'
                     type="submit">
                     Acceder
                 </button>
+                </div>
 
             </div>
        </Form>
@@ -72,7 +74,7 @@ const Login = () => {
         <p>
           ¿No tienes una cuenta?
           <button  
-            className='boton'
+            className='boton__login'
             type="submit"
             onClick={()=>navegacion("/registro")}>
             Regístrate

@@ -5,6 +5,7 @@ $color-claro: #B1CEFB;
 $blanco: #ffffff;
 $sombra-cajas: -3px 5px 3px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 $color-claro-semitransparente: #b1cffbae;
+$margen: 20px;
 
 @mixin cajasFormularios {
     margin: 20px auto;

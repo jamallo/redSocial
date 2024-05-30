@@ -1,6 +1,7 @@
 @use "base";
 
 .ventana {
+
     color: base.$color-oscuro;
     background-color: base.$color-claro;
     position: absolute;
@@ -14,13 +15,44 @@
     
 }
 
+
+
+.ventana__titulo {
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+
+}
+
+.ventana__avatar {
+    margin: base.$margen;
+}
+
+.ventana__imagen {
+    margin: base.$margen;
+}
+.ventana__datos {
+    display: flex;
+    justify-content: center;
+    margin: base.$margen;
+}
+
 .ventana__input {
+    display: flex;
+    justify-content: center;
     background-color: #053075;
     color: #ffffff;
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: 1px solid #ffffff;
     border-radius: 4px;
     margin-bottom: 10px;
     box-sizing: border-box;
+    margin-left: base.$margen;
+    margin-right: base.$margen;
 }
+
+.ventana__boton {
+   margin-bottom: -45px;
+   margin-right: base.$margen;
+ }

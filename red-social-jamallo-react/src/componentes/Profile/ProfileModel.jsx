@@ -3,10 +3,11 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { Avatar, Button, IconButton, TextField } from '@mui/material';
+import { Avatar, Button, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { updateProfileAction} from "../../Redux/Auth/auth.action";
 import "../../styles/ProfileModel.scss"
+import Boton from '../Botones/Boton';
 
 
 
@@ -43,25 +44,30 @@ export default function ProfileModel({open, handleClose}) {
         <Box className='ventana'>
           <form onSubmit={formik.handleSubmit}>
             <div>
-                <div>
+            
+                <div className='ventana__contenedor'>
+                    
                     <IconButton onClick={handleClose}>
                         <CloseIcon/>
                     </IconButton>
-                    <p>Editar Perfil</p>
+                    <div className= "ventana__boton">
+                    <Boton text="Guardar" type='submit' onSubmit={handleSubmit}/>
+                    </div>
+                    <p className='ventana__titulo'>Editar Perfil</p>
                 </div>
-                <Button type='submit' onSubmit={handleSubmit}>Guardar</Button>
+                
             </div>
-            <div>
+            <div className='ventana__imagen'>
                 <div>
                     <img src='' alt='imagen__perfil'/>
                 </div>
             </div>
-            <div>
-                <Avatar sx={{width: "10rem", height: "10rem"}}
+            <div className='ventana__avatar'>
+                <Avatar sx={{width: "10rem", height: "10rem", bgcolor: "#053075"}}
                     src=''
                 />
             </div>
-            <div>
+            <div className='ventana__datos'>
                 <p>Nombre</p>
                 <input 
                     className='ventana__input'
@@ -82,6 +88,7 @@ export default function ProfileModel({open, handleClose}) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                 />
+                
             </div>
           </form>
         </Box>

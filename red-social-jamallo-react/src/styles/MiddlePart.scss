@@ -31,8 +31,9 @@
 
 .Buscador {
     outline: none;
-    width: 90%;
-    height: 50px;
+    width: 85%;
+    height: 35px;
+    margin-right: base.$margen;
     border-radius: 9px;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
@@ -44,8 +45,25 @@
 .contenido__contenido {
     display: flex;
     justify-content: center;
-    margin-top: 1.25rem;
     margin-left: 36px;
     
 
+}
+
+.contenido__contenido__opciones:hover {
+    background-color: base.$color-oscuro;
+    transition: 3s;
+    border-radius: 10px;
+    
+}
+
+.contenido__contenido__opciones span:hover {
+    color: base.$color-claro;
+    transition: 2s;
+    margin-left: -25px;
+}
+
+.contenido__contenido__opciones span{
+    color: base.$color-oscuro;
+    font-size: 18px;
 }

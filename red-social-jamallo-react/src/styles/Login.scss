@@ -55,9 +55,14 @@
     @include base.boton
 }
 
-.boton:hover, .boton:focus {
+.boton__login:hover {
     box-shadow: 0 0 0 3em rgba(255, 255, 255, 0);
 
+}
+
+.boton__login {
+    @include base.boton;
+    margin-right: auto;
 }
 
 

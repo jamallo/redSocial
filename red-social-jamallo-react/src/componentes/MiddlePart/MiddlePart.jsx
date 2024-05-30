@@ -1,5 +1,5 @@
 import { Avatar, Card, IconButton } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/MiddlePart.scss";
 import AddIcon from "@mui/icons-material/Add";
 import BotonMas from "../Botones/BotonPerfil";
@@ -8,13 +8,21 @@ import ImageIcon from '@mui/icons-material/Image';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import ArticleIcon from '@mui/icons-material/Article';
 import PostCard from "../Post/PostCard";
+import CreatePostModelo from "../CreatePost/CreatePostModelo";
 
 const story = [1, 1, 1, 1, 1, 1];
 const posts = [1, 1, 1, 1, 1, 1];
 const MiddlePart = () => {
 
-  const handleOpenCreatePostModal = () =>
+  const [openCreateModelo, setOpenCreatePostModelo] = useState(false);
+
+  const handleCloseCreatePostModelo = () => setOpenCreatePostModelo(false);
+
+
+  const handleOpenCreatePostModal = () => {
+    setOpenCreatePostModelo(true);
     console.log ("abriendo post model...")
+  };
 
   return (
     <div className="MiddlePart">
@@ -32,8 +40,9 @@ const MiddlePart = () => {
       </section>
       <Card className="contenido" sx={{ backgroundColor: "#b1cffbae", borderRadius: "20px"}}>
         <div className="MiddlePart__contenido">
-          <Avatar sx={{bgcolor: "#053075"}}/>
+          <Avatar sx={{bgcolor: "#053075", margin: "20px"}}/>
           <input 
+            onClick={handleOpenCreatePostModal}
             readOnly
             className="Buscador" 
             type="text"/>
@@ -42,30 +51,28 @@ const MiddlePart = () => {
           <div className="contenido__contenido__opciones">
             <IconButton onClick={handleOpenCreatePostModal} >
               <ImageIcon sx={{color: "#053075"}}/>
-      
+              <span>imagen</span>
             </IconButton>
-
-            <span>imagen</span>
 
           </div>
 
           <div className="contenido__contenido__opciones">
             <IconButton onClick={handleOpenCreatePostModal} >
               <VideocamIcon sx={{color: "#053075"}}/>
-      
+              <span>video</span>
             </IconButton>
 
-            <span>video</span>
+            
 
           </div>
 
           <div className="contenido__contenido__opciones">
             <IconButton onClick={handleOpenCreatePostModal}>
               <ArticleIcon sx={{color: "#053075"}}/>
-      
+              <span>artículo</span>
             </IconButton>
 
-            <span>artículo</span>
+            
 
           </div>
 
@@ -75,6 +82,9 @@ const MiddlePart = () => {
       {posts.map((item) => <PostCard/>)}
       
 
+      </div>
+      <div>
+        <CreatePostModelo handleClose={handleCloseCreatePostModelo} open={openCreateModelo}/>
       </div>
     </div>
   );
