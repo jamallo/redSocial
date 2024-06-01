@@ -1,25 +1,24 @@
-const cloud_name="dmvm9zqfl";
-const upload_preset="jamallo_red_social";
+import AWS from 'aws-sdk';
 
-export const cargarANube = async(pics, fileType) => {
+const s3 = new AWS.S3({
+  accessKeyId: '905418119496',
+  secretAccessKey: '',
+  region: 'eu-west-3',
+});
 
+export const cargarANube = async (file) => {
+  const params = {
+    Bucket: 'YOUR_BUCKET_NAME',
+    Key: `images/${file.name}`,
+    Body: file,
+    ACL: 'public-read',
+  };
 
-    if(pics && fileType) {
-        const data = new FormData();
-        data.append("file", pics);
-        data.append("upload_preset", upload_preset);
-        data.append("cloud_name", cloud_name);
-
-        const res = await fetch(`https://api.cloudinary.com/
-        v1_1/${cloud_name}/${fileType}/upload`,
-            {method: "post", body: data}
-        )
-
-        const fileData = await res.json();
-        console.log("res ----", fileData.url);
-        return fileData.url;
-
-    } else {
-        console.log("error...........")
-    }
-}
+  try {
+    const { Location } = await s3.upload(params).promise();
+    return Location;
+  } catch (error) {
+    console.error("Error al subir archivo a S3", error);
+    return null;
+  }
+};

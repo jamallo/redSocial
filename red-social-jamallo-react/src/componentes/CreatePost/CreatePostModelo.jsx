@@ -36,7 +36,7 @@ const CreatePostModelo = ({ handleClose, open }) => {
 
   const handleSelectImagen = async(even) => {
     setIsLoading(true);
-    const imageUrl = await cargarANube(even.target.files[0], "image");
+    const imageUrl = await cargarANube(even.target.files[0]);
     setSelectedImage(imageUrl);
     setIsLoading(false);
     formik.setFieldValue("image", imageUrl);
@@ -92,7 +92,7 @@ const CreatePostModelo = ({ handleClose, open }) => {
                   />
                   <label htmlFor="image-input">
                     <IconButton component="span">
-                      <ImageIcon alt="añadir imagen"/>
+                      <ImageIcon/>
                     </IconButton>
                   </label>
                   <span>Imagen</span>
@@ -114,7 +114,7 @@ const CreatePostModelo = ({ handleClose, open }) => {
               </div>
               {selectedImage && (
                 <div>
-                  <img className="image" src={selectedImage} alt="" />
+                  <img className="image" src={selectedImage} alt="Seleccionada" />
                 </div>
               )}
 
