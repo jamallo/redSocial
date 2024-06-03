@@ -1,9 +1,11 @@
-import AWS from 'aws-sdk';
 
-const s3 = new AWS.S3({
-  accessKeyId: '',
-  secretAccessKey: '',
-  region: 'eu-west-3',
+const AWS = require('aws-sdk');
+
+const s3 = new AWS.S3();
+
+s3.listBuckets((err, data) => {
+  if (err) console.log(err, err.stack);
+  else console.log(data);
 });
 
 export const cargarANube = async (file) => {
