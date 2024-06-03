@@ -2,19 +2,76 @@
 
 .ventanaArticulo {
     display: flex;
-    justify-content: space-between;
-    justify-items: center;
-}
+    align-items: center;
+    margin-bottom: 1rem;
+  
+    &__nombre {
+      font-weight: bold;
+      margin: 0;
+      color: base.$color-oscuro;
+    }
+  
+    &__nick {
+      color: gray;
+      margin: 0;
+    }
+  }
+  
+  .ventanaArticulo_comentario {
+    width: 100%;
+    border: 1px solid base.$color-claro;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    margin-bottom: 20px;
+    resize: none;
+  
+    &:focus {
+      outline: none;
+      border-color: base.$color-oscuro;
+    }
+  }
+  
+  .ventana {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: -20px;
+    background-color: base.$color-claro;
+  
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+  
+      input[type="file"] {
+        display: none;
+      }
+  
+      span {
+        margin-top: 0.5rem;
+        color: base.$color-oscuro;
+      }
+  
+      svg {
+        font-size: 2rem;
+        color: base.$color-oscuro;
+      }
+    }
+  }
+  
+  .image {
+    position: relative;
+    max-width: 100%;
+    margin-top: 1rem;
+    border-radius: 0.4rem;
+  }
 
-.ventanaArticulo__nombre {
-    font-weight: bold;
-    font-size: large;
-}
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+  }
+  
 
-.ventanaArticulo__nick {
-    font-size: small;
-}
-
-#image-input, #video-input {
-    display: none;
-}
+  

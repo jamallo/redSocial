@@ -6,13 +6,13 @@ import {
   IconButton,
   Modal,
 } from "@mui/material";
-import { Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import React, { useState } from "react";
 import ImageIcon from "@mui/icons-material/Image";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
-import { cargarANube, uploadToCloudinary } from "../../utils/cargarANube";
+import { cargarANube } from "../../utils/cargarANube";
 import Boton from "../Botones/Boton";
-import "../../styles/CreatePostModelo.scss"
+import "../../styles/CreatePostModelo.scss";
 import { useDispatch } from "react-redux";
 import { createPostAction } from "../../Redux/Post/post.action";
 
@@ -31,21 +31,20 @@ const style = {
 };
 
 const CreatePostModelo = ({ handleClose, open }) => {
-  
   const [selectedImage, setSelectedImage] = useState();
   const [selectedVideo, setSelectedVideo] = useState();
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
-  const handleSelectImagen = async(even) => {
+  const handleSelectImagen = async (even) => {
     setIsLoading(true);
     const imageUrl = await cargarANube(even.target.files[0]);
     setSelectedImage(imageUrl);
     setIsLoading(false);
-    formik.setFieldValue("image", imageUrl);
+    formik.setFieldValue("imagen", imageUrl);
   };
 
-  const handleSelectVideo = async(even) => {
+  const handleSelectVideo = async (even) => {
     setIsLoading(true);
     const videoUrl = await cargarANube(even.target.files[0]);
     setSelectedVideo(videoUrl);
@@ -55,15 +54,16 @@ const CreatePostModelo = ({ handleClose, open }) => {
 
   const formik = useFormik({
     initialValues: {
-      caption:"",
+      titulo: "",
       imagen: "",
-      video: ""
+      video: "",
     },
-    onSubmit:(values)=> {
+    onSubmit: (values) => {
       console.log("valores formik", values);
       dispatch(createPostAction(values));
-    }
+    },
   });
+
   return (
     <>
       <Modal
@@ -82,16 +82,16 @@ const CreatePostModelo = ({ handleClose, open }) => {
                   <p className="ventanaArticulo__nick">@llamada</p>
                 </div>
               </div>
-
-              <textarea
-                className="ventanaArticulo_comentario"
-                placeholder="Escribe lo que pienses ..."
-                name="caption"
-                id=""
-                onChange={formik.handleChange}
-                value={formik.values.caption}
-                rows="4"
-              ></textarea>
+              <div >
+                <textarea
+                  className="ventanaArticulo_comentario"
+                  placeholder="Escribe lo que pienses ..."
+                  name="titulo"
+                  onChange={formik.handleChange}
+                  value={formik.values.titulo}
+                  rows="4"
+                />
+              </div>
               <div className="ventana">
                 <div>
                   <input
@@ -102,7 +102,7 @@ const CreatePostModelo = ({ handleClose, open }) => {
                   />
                   <label htmlFor="image-input">
                     <IconButton component="span">
-                      <ImageIcon/>
+                      <ImageIcon />
                     </IconButton>
                   </label>
                   <span>Imagen</span>
@@ -122,14 +122,19 @@ const CreatePostModelo = ({ handleClose, open }) => {
                   <span>Video</span>
                 </div>
               </div>
+
               {selectedImage && (
                 <div>
-                  <img className="image" src={selectedImage} alt="Seleccionada" />
+                  <img
+                    className="image"
+                    src={selectedImage}
+                    alt="Seleccionada"
+                  />
                 </div>
               )}
 
               <div>
-                <Boton type= "submit" text = "Post"/>
+                <Boton type="submit" text="Post" />
               </div>
             </div>
           </form>

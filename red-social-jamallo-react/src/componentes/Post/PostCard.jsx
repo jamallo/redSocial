@@ -10,7 +10,7 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import "../../styles/PostCard.scss"
 
-const PostCard = () => {
+const PostCard = ({item}) => {
 
     
   return (
@@ -26,19 +26,19 @@ const PostCard = () => {
           </IconButton>
         }
         sx={{color: "#053075"}}
-        title="Persona"
-        subheader="@Persona"
+        title={item.user.nombre+ " " +item.user.apellildos}
+        subheader={"@"+item.user.nombre.toLowerCase()+ "_" +item.user.apellidos.toLowerCase()}
       />
       <CardMedia
         sx={{color: "#053075"}}
         component="img"
         height="194"
-        image=""
-        alt="Algo que se quiera poner"
+        image={item.imagen}
+        alt="Imagen que se quiera poner"
       />
       <CardContent >
         <Typography variant="body2" sx={{color: "#053075"}}>
-          Texto que se quiera poner.
+          {item.titulo}
         </Typography>
       </CardContent>
 

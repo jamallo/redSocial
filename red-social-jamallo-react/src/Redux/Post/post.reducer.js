@@ -7,7 +7,7 @@ const initialState = {
     posts: [],
     like: null
 }
-const postReducer = (state=initialState, action) => {
+export const postReducer = (state=initialState, action) => {
     switch(action.type) {
         case CREATE_POST_REQUEST:
         case GET_ALL_POST_REQUEST:
