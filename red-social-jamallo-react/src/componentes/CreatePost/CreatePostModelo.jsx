@@ -13,6 +13,8 @@ import VideoCallIcon from "@mui/icons-material/VideoCall";
 import { cargarANube, uploadToCloudinary } from "../../utils/cargarANube";
 import Boton from "../Botones/Boton";
 import "../../styles/CreatePostModelo.scss"
+import { useDispatch } from "react-redux";
+import { createPostAction } from "../../Redux/Post/post.action";
 
 const style = {
   position: "absolute",
@@ -33,6 +35,7 @@ const CreatePostModelo = ({ handleClose, open }) => {
   const [selectedImage, setSelectedImage] = useState();
   const [selectedVideo, setSelectedVideo] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch=useDispatch();
 
   const handleSelectImagen = async(even) => {
     setIsLoading(true);
@@ -42,7 +45,13 @@ const CreatePostModelo = ({ handleClose, open }) => {
     formik.setFieldValue("image", imageUrl);
   };
 
-  const handleSelectVideo = () => {};
+  const handleSelectVideo = async(even) => {
+    setIsLoading(true);
+    const videoUrl = await cargarANube(even.target.files[0]);
+    setSelectedVideo(videoUrl);
+    setIsLoading(false);
+    formik.setFieldValue("video", videoUrl);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -52,6 +61,7 @@ const CreatePostModelo = ({ handleClose, open }) => {
     },
     onSubmit:(values)=> {
       console.log("valores formik", values);
+      dispatch(createPostAction(values));
     }
   });
   return (
