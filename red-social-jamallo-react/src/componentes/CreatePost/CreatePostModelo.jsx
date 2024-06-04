@@ -14,7 +14,8 @@ import { cargarANube } from "../../utils/cargarANube";
 import Boton from "../Botones/Boton";
 import "../../styles/CreatePostModelo.scss";
 import { useDispatch } from "react-redux";
-import { createPostAction } from "../../Redux/Post/post.action";
+import { createPostAction, createCommentAction } from "../../Redux/Post/post.action";
+
 
 const style = {
   position: "absolute",
@@ -56,13 +57,15 @@ const CreatePostModelo = ({ handleClose, open }) => {
     initialValues: {
       titulo: "",
       imagen: "",
-      video: "",
+      video: ""
     },
     onSubmit: (values) => {
       console.log("valores formik", values);
       dispatch(createPostAction(values));
     },
   });
+
+  
 
   return (
     <>

@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPostAction } from "../../Redux/Post/post.action";
 
 const story = [1, 1, 1, 1, 1, 1];
-const posts = [1, 1, 1, 1, 1, 1];
 const MiddlePart = () => {
 
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ const MiddlePart = () => {
 
   useEffect(()=> {
     dispatch(getAllPostAction())
-  },[dispatch]);
+  },[post.newComment]);
 
   return (
     <div className="MiddlePart">
@@ -90,8 +89,8 @@ const MiddlePart = () => {
         </div>
       </Card>
       <div className="Post">
-      {post && posts.length > 0 ? (
-          post.posts.map((item, index) => <PostCard key={index} item={item} />)
+      {post.post && post.post.length > 0 ? (
+          post.post.map((item, index) => <PostCard key={index} item={item} />)
         ) : (
           <p>No hay posts disponibles</p>
         )}
