@@ -44,3 +44,10 @@
         color: base.$color-oscuro;
     }
 }
+
+.Card__imagenesPost {
+    width: 100%;
+    max-height: 30rem;
+    object-fit: cover;
+    object-position: top;
+}

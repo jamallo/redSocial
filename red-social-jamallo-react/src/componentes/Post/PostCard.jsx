@@ -4,12 +4,11 @@ import {
   CardActions,
   CardContent,
   CardHeader,
-  CardMedia,
   Divider,
   IconButton,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { blue } from "@mui/material/colors";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
@@ -21,27 +20,45 @@ import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "../../styles/PostCard.scss";
 import { createCommentAction, likePostAction } from "../../Redux/Post/post.action";
 import { useDispatch, useSelector } from "react-redux";
+import { isLikedByReqUser } from "../../utils/isLikedByReqUser";
+import { CREATE_COMMENT_SUCCESS } from "../../Redux/Post/post.actionType";
+import { current } from "@reduxjs/toolkit";
 
 const PostCard = ({ item }) => {
   const [showComments, setShowComments] = useState(false);
+  const [localComments, setLocalComments] = useState(item.comments || []);
   const dispatch = useDispatch();
-  const { post } = useSelector((store) => store);
+  const { auth, post } = useSelector((store) => store);
+  const currentPost = post.posts.find(p => p.id === item.id) || item;
 
   const handleShowComment = () => setShowComments(!showComments);
 
-  const handleCreateComment = (content) => {
+  const handleCreateComment = async (content) => {
     const reqData = {
       postId: item.id,
       data: {
-        content,
+        content
       },
     };
-    dispatch(createCommentAction(reqData));
-  };
 
-  const handleLikePost = () => {
-    dispatch(likePostAction(item.id));
-  }
+    const response = await dispatch(createCommentAction(reqData));
+        if (response.id) {
+            setLocalComments([...localComments, response]);
+        }
+    };
+
+    const handleLikePost = async () => {
+      dispatch(likePostAction(item.id));
+    };
+    
+
+  useEffect(() => {
+    setLocalComments(item.comments);
+}, [item.comments, post.newComment]);
+
+const liked = isLikedByReqUser(auth.user.id, item);
+
+console.log("gusta: " + liked)
 
   return (
     <Card
@@ -58,35 +75,25 @@ const PostCard = ({ item }) => {
           </IconButton>
         }
         sx={{ color: "#053075" }}
-        title={item.user.nombre + " " + item.user.apellidos}
-        subheader={
-          "@" +
-          item.user.nombre.toLowerCase() +
-          "_" +
-          item.user.apellidos.toLowerCase()
-        }
+        title={currentPost.user.nombre + " " + currentPost.user.apellidos}
+        subheader={`@${currentPost.user.nombre.toLowerCase()}_${currentPost.user.apellidos.toLowerCase()}`}
+        
       />
-      <CardMedia
-        sx={{ color: "#053075" }}
-        component="img"
-        height="194"
-        image={item.imagen}
-        alt="Imagen que se quiso poner"
-      />
+      <img className="Card__imagenesPost" src={item.image} alt="imagen post"/>
       <CardContent>
         <Typography variant="body2" sx={{ color: "#053075" }}>
-          {item.titulo}
+          {currentPost.titulo}
         </Typography>
       </CardContent>
 
       <CardActions className="Post__acciones" disableSpacing>
         <div>
           <IconButton onClick={handleLikePost}>
-            {false ?
-              <StarBorderIcon sx={{ color: "#053075" }} />
-             : 
+            {liked ? (
               <StarIcon sx={{ color: blue[900] }} />
-            }
+             ) : (
+              <StarBorderIcon sx={{ color: "#053075" }} />
+            )}
           </IconButton>
 
           <IconButton>
@@ -99,11 +106,7 @@ const PostCard = ({ item }) => {
         </div>
         <div>
           <IconButton>
-            {true ? (
-              <BookmarkIcon sx={{ color: "#053075" }} />
-            ) : (
-              <BookmarkBorderIcon sx={{ color: "#053075" }} />
-            )}
+            <BookmarkBorderIcon sx={{ color: "#053075" }} />
           </IconButton>
         </div>
       </CardActions>
@@ -113,12 +116,11 @@ const PostCard = ({ item }) => {
           <div className="postCard_ponerComentario">
             <Avatar sx={{ marginRight: "20px" }} />
             <input
-              // onKeyDown={(e)}
               className="postCard_ponerComentario__caja"
               onKeyPress={(e) => {
-                if (e.key === "Enter") {
-                  handleCreateComment(e.target.value);
-                  console.log("pulsando entre.....", e.target.value);
+                if (e.key === "Enter" && e.target.value.trim()) {
+                  handleCreateComment(e.target.value.trim());
+                  e.target.value = '';
                 }
               }}
               type="text"
@@ -127,9 +129,9 @@ const PostCard = ({ item }) => {
           </div>
           <Divider />
           <div>
-            {item.comments?.map((comment) => (
+            {localComments.map((comment) => (
               <div className="postCard_comentarios" key={comment.id}>
-                <Avatar>{comment.user.nombre}</Avatar>
+                <Avatar>{comment.user.nombre.charAt(0)}</Avatar>
                 <p className="postCard_comentarios__texto">{comment.content}</p>
               </div>
             ))}

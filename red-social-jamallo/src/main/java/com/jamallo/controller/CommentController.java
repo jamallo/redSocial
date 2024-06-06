@@ -50,6 +50,8 @@ public class CommentController {
 				user.getId()
 				);
 		
+		createdComment.setUser(user);
+		
 		return createdComment;
 	}
 	

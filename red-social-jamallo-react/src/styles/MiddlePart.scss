@@ -42,6 +42,10 @@
     border-color: base.$color-oscuro;
 }
 
+.Buscador::placeholder {
+    color: base.$color-oscuro;
+}
+
 .contenido__contenido {
     display: flex;
     justify-content: center;

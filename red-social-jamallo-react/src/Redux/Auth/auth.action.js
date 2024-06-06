@@ -8,12 +8,14 @@ export const loginUserAction = (loginData) => async(dispatch) => {
         const {data} = await axios.post(`${API_BASE_URL}/auth/signin`, loginData.data)
 
         if (data.token) {
-            localStorage.setItem("jwt", data.token)
+            localStorage.setItem("jwt", data.token);
             
         }
 
-        console.log("inicio de sesión correcto", data)
-        dispatch({type:LOGIN_SUCCESS, payload:data.token})
+        console.log("inicio de sesión correcto", data);
+        dispatch({type:LOGIN_SUCCESS, payload:data.token});
+
+        dispatch(getProfileAction(data.token));
 
     } catch (error) {
         console.log("-------", error)

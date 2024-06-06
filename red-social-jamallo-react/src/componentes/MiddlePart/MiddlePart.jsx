@@ -17,8 +17,8 @@ const MiddlePart = () => {
 
   const dispatch = useDispatch();
 
-  const {post} = useSelector(store=>store);
-  console.log("post store", post);
+  const {posts} = useSelector((store)=>store.post);
+  console.log("post store", posts);
 
   const [openCreateModelo, setOpenCreatePostModelo] = useState(false);
 
@@ -27,12 +27,16 @@ const MiddlePart = () => {
 
   const handleOpenCreatePostModal = () => {
     setOpenCreatePostModelo(true);
-    console.log ("abriendo post model...")
+    console.log ("abriendo post model...", setOpenCreatePostModelo)
   };
 
   useEffect(()=> {
     dispatch(getAllPostAction())
-  },[post.newComment]);
+  },[posts.newComment]);
+
+  const handlePostCreate = () => {
+    dispatch(getAllPostAction());
+  }
 
   return (
     <div className="MiddlePart">
@@ -41,8 +45,8 @@ const MiddlePart = () => {
           <BotonMas>
             <AddIcon/>
           </BotonMas>
-          {story.map((item) => (
-            <BotonMas>
+          {story.map((item, index) => (
+            <BotonMas key={index}>
               <PersonIcon />
             </BotonMas>
           ))}
@@ -55,7 +59,9 @@ const MiddlePart = () => {
             onClick={handleOpenCreatePostModal}
             readOnly
             className="Buscador" 
-            type="text"/>
+            type="text"
+            placeholder="Escribe lo que piensas..."
+            />
         </div>
         <div className="contenido__contenido">
           <div className="contenido__contenido__opciones">
@@ -89,15 +95,19 @@ const MiddlePart = () => {
         </div>
       </Card>
       <div className="Post">
-      {post.post && post.post.length > 0 ? (
-          post.post.map((item, index) => <PostCard key={index} item={item} />)
+      {posts && posts.length > 0 ? (
+          posts.map((item, index) => <PostCard key={index} item={item} />)
         ) : (
           <p>No hay posts disponibles</p>
         )}
 
       </div>
       <div>
-        <CreatePostModelo handleClose={handleCloseCreatePostModelo} open={openCreateModelo}/>
+        <CreatePostModelo 
+          handleClose={handleCloseCreatePostModelo} 
+          open={openCreateModelo}
+          onPostCreated = {handlePostCreate}
+          />
       </div>
     </div>
   );
