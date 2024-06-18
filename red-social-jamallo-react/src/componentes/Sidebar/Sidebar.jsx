@@ -4,8 +4,7 @@ import "../../styles/Sidebar.scss";
 import { Avatar } from "@mui/material";
 import BotonPuntos from "../Botones/BotonPuntos"
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
-import Profile from "../Profile/Profile";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const{auth} = useSelector(store=>store);
@@ -20,6 +19,8 @@ const Sidebar = () => {
       navigate(`/profile/${auth.user?.id}`)
     } else if (item.titulo==="Reels") {
       navigate(`/reels`)
+    } else if (item.titulo==="Mensajes") {
+      navigate('/mensajes')
     }
   } 
   return (

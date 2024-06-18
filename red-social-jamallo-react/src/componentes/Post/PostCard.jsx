@@ -16,13 +16,10 @@ import ShareIcon from "@mui/icons-material/Share";
 import StarIcon from "@mui/icons-material/Star";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "../../styles/PostCard.scss";
 import { createCommentAction, likePostAction } from "../../Redux/Post/post.action";
 import { useDispatch, useSelector } from "react-redux";
 import { isLikedByReqUser } from "../../utils/isLikedByReqUser";
-import { CREATE_COMMENT_SUCCESS } from "../../Redux/Post/post.actionType";
-import { current } from "@reduxjs/toolkit";
 
 const PostCard = ({ item }) => {
   const [showComments, setShowComments] = useState(false);

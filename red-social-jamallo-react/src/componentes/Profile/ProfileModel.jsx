@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
-import { Avatar, Button, IconButton } from '@mui/material';
+import { Avatar, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { updateProfileAction} from "../../Redux/Auth/auth.action";
 import "../../styles/ProfileModel.scss"
@@ -50,9 +50,7 @@ export default function ProfileModel({open, handleClose}) {
                     <IconButton onClick={handleClose}>
                         <CloseIcon/>
                     </IconButton>
-                    <div className= "ventana__boton">
-                    <Boton text="Guardar" type='submit' onSubmit={handleSubmit}/>
-                    </div>
+                    
                     <p className='ventana__titulo'>Editar Perfil</p>
                 </div>
                 
@@ -90,6 +88,9 @@ export default function ProfileModel({open, handleClose}) {
                 />
                 
             </div>
+            <div className= "ventana__boton">
+                    <Boton text="Guardar" type='submit' onSubmit={handleSubmit}/>
+                    </div>
           </form>
         </Box>
       </Modal>

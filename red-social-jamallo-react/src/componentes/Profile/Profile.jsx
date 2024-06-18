@@ -5,7 +5,6 @@ import { Avatar, Box, Button, Card, Tab, Tabs } from "@mui/material";
 import PostCard from "../Post/PostCard";
 import UserReelCard from "../Reels/UserReelCard";
 import { useSelector } from "react-redux";
-import BotonPerfil from "../Botones/BotonPerfil"
 import Boton from "../Botones/Boton";
 import ProfileModel from "./ProfileModel";
 
@@ -16,13 +15,12 @@ const tabs = [
   { value: "repost", name: "Repost" },
 ];
 
-const posts = [1, 1, 1, 1];
 const reels = [1, 1, 1, 1];
 const savedPost = [1, 1, 1, 1];
 const repost = [1, 1, 1, 1];
 
 const Profile = () => {
-  const{auth} = useSelector(store=>store);
+  const{auth, post} = useSelector((store)=>store);
   const { id } = useParams();
 
   const [value, setValue] = React.useState("post");
@@ -34,6 +32,8 @@ const Profile = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpenProfileModal = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const posts = post.posts.filter(p => p.userId === auth.user.id);
 
   return (
     <div className="Perfil">
@@ -123,25 +123,25 @@ const Profile = () => {
                 {value === "post" ? (
                   <div className="Perfil__contenido__masDatos__post__Card">
                     {posts.map((item) => (
-                      <PostCard />
+                      <PostCard key={item.id} item={{...item, comments: item.comments || []}}/>
                     ))}
                   </div>
                 ) : value === "reels" ? (
                   <div className="Perfil__contenido__masDatos_reels">
-                    {reels.map((item) => (
-                      <UserReelCard />
+                    {reels.map((item, index) => (
+                      <UserReelCard key={index}/>
                     ))}
                   </div>
                 ) : value === "saved" ? (
                   <div className="Perfil__contenido__masDatos__post__Card">                    
-                    {savedPost.map((item) => (
-                      <PostCard />
+                    {savedPost.map((item, index) => (
+                      <PostCard key={index} item={item}/>
                     ))}
                   </div>
                 ) : (
                   <div className="Perfil__contenido__masDatos__post__Card">                    
-                    {repost.map((item) => (
-                      <PostCard />
+                    {repost.map((item, index) => (
+                      <PostCard key={index} item={item}/>
                     ))}
                   </div>
                 )}

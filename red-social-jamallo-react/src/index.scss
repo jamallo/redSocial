@@ -5,6 +5,17 @@ body {
   font-family: "Russo One", sans-serif;
 }
 
+.hideScrollBar::-webkit-scrollbar {
+  width: 0;
+  display: none;
+  height: 0;
+}
+
+.hideScrollBar::-webkit-scrollbar-thumb {
+  width: 0px;
+
+}
+
 
 @tailwind base;
 @tailwind components;

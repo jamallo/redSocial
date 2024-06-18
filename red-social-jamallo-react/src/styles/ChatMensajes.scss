@@ -1,0 +1,44 @@
+@use "base";
+
+.sms {
+    display: flex;
+}
+
+.smscontenedorsi {
+    justify-content: start;
+}
+
+.smscontenedorno {
+    justify-content: end;
+}
+
+.mensaje {
+    padding: 5px;
+    background-color: base.$color-oscuro;
+    color: base.$color-claro;
+}
+
+.mensajesSi {
+    border-radius: 10px;
+}
+
+.mensajesNo {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 9999px;
+}
+
+.imagenChat {
+    width: 12rem;
+    height: 17rem;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.si {
+    padding: 8px;
+}
+
+.no {
+    padding: 3px;
+}
